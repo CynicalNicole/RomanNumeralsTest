@@ -26,6 +26,9 @@ class RomanNumeral
         //It seems much smarter to just not allow the constructing of a RomanNumeral to begin with if the constructor is not passed a valid numeral 
         //Only need to throw an exception once here versus in every single method that could end up being added to the RomanNumeral class
 
+        //Sanitise input (remove all whitespace)
+        $romanNumeral = str_replace(' ', '', $romanNumeral);
+
         //Iterate over each character by splitting the string into an array of characters
         foreach (str_split($romanNumeral) as $char) {
             //Check to see if each char is not in the array values of $symbols
