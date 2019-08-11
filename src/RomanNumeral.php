@@ -15,22 +15,45 @@ class RomanNumeral
 
     protected $numeral;
 
+    /**
+     * Construct a roman numeral
+     * 
+     * @throws InvalidNumeral when the passed string is an invalid roman numeral
+     */
     public function __construct(string $romanNumeral)
     {
-		//Check the input string
-		
+        //First check the input string to ensure it is a valid roman numeral
+        //It seems much smarter to just not allow the constructing of a RomanNumeral to begin with if the constructor is not passed a valid numeral 
+        //Only need to throw an exception once here versus in every single method that could end up being added to the RomanNumeral class
+
+        //Iterate over each character by splitting the string into an array of characters
+        foreach (str_split($romanNumeral) as $char) {
+            //Check to see if each char is not in the array values of $symbols
+            if (!in_array($char, array_values($symbols))) {
+                //Throw an exception
+                throw new InvalidNumeral;
+            }
+        }
+        
+        //Set the numeral
         $this->numeral = $romanNumeral;
     }
 
     /**
      * Converts a roman numeral such as 'X' to a number, 10
-     *
-     * @throws InvalidNumeral on failure (when a numeral is invalid)
      */
     public function toInt():int
     {
+        //The total value
         $total = 0;
 
+        //Iterate over the characters in $numeral
+        foreach (str_split($numeral) as $char) {
+            //use array search to find the key for the current character and add the key to the total
+            $total += array_search($char, $symbols);
+        }
+
+        //The total should be the valid numeral
         return $total;
     }
 }
