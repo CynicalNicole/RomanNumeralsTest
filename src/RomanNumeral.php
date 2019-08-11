@@ -29,7 +29,7 @@ class RomanNumeral
         //Iterate over each character by splitting the string into an array of characters
         foreach (str_split($romanNumeral) as $char) {
             //Check to see if each char is not in the array values of $symbols
-            if (!in_array($char, array_values($symbols))) {
+            if (!in_array($char, array_values($this->symbols))) {
                 //Throw an exception
                 throw new InvalidNumeral;
             }
@@ -48,9 +48,9 @@ class RomanNumeral
         $total = 0;
 
         //Iterate over the characters in $numeral
-        foreach (str_split($numeral) as $char) {
+        foreach (str_split($this->numeral) as $char) {
             //use array search to find the key for the current character and add the key to the total
-            $total += array_search($char, $symbols);
+            $total += array_search($char, $this->symbols);
         }
 
         //The total should be the valid numeral
