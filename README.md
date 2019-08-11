@@ -7,6 +7,12 @@ I did so as I believe that, if more methods were to be added, reusing the same t
 I forgot how roman numerals actually functioned this run through, so my implementation didn't take into account that IX is 9. This can be accounted for by working in reverse and subtracting if the previous (next in reverse) numeral is smaller.
 The validation and error throwing works as intended.
 
+### Second Attempt (Commit labelled "Second Attempt") - All passed
+
+My previous attempt at explaining what I'd do here was messy, and probably wrong. However if you're checking IX, reversing it to XI and checking would mean that the current value in position 1 is smaller than that in position 0, so the value in position 1 needs to be subtracted from the value, not added.
+
+Upon testing this change, the code functioned as intended and all results were a pass.
+
 # RomanNumeralTest
 
 To install this you will need PHP and Composer

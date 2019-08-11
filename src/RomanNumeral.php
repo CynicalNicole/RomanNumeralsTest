@@ -46,11 +46,23 @@ class RomanNumeral
     {
         //The total value
         $total = 0;
+        $previousValue = 0;
 
         //Iterate over the characters in $numeral
-        foreach (str_split($this->numeral) as $char) {
-            //use array search to find the key for the current character and add the key to the total
-            $total += array_search($char, $this->symbols);
+        foreach (str_split(strrev($this->numeral)) as $char) {
+            //use array search to find the key for the current character
+            $currentValue = array_search($char, $this->symbols);
+
+            //If the value in the current position is less than the last one, subtract the value
+            if ($currentValue < $previousValue)
+                $total -= $currentValue;
+            //Otherwise, add the value
+            else {
+                $total += $currentValue;
+            }
+
+            //Finally, update $previousValue
+            $previousValue = $currentValue;
         }
 
         //The total should be the valid numeral
